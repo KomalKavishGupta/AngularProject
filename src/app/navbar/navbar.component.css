@@ -1,0 +1,35 @@
+a:hover{
+    color: blue !important;
+}
+
+li{
+    padding-right: 5px;
+}
+
+li:hover{
+    background-color: white;
+    border-radius: 30px;
+}
+
+.sign-out{
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: white;
+    border-radius: 30px;
+    color: blue !important;
+    text-decoration: none;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.imageSize{
+    aspect-ratio: 3 / 2;
+}

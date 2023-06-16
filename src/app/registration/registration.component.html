@@ -1,0 +1,72 @@
+<div class="container centralized-form">
+<form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+    <fieldset>
+        <legend>Store Registration:</legend>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6"> <label for="sname" class="label">Store Name:</label><br>
+                    <input type="text" id="sname" name="sname" class="form-control" autofocus required ngModel #sname="ngModel">
+                    <span class="text-danger" *ngIf="(sname.touched && !sname.valid)">
+                    Store Name is required
+                    </span>
+                </div>
+                <div class="col-6">
+                    <label for="oname" class="label">Owner Name:</label><br>
+                    <input type="text" id="oname" name="oname" class="form-control"  required ngModel #oname="ngModel">
+                    <span class="text-danger" *ngIf="(oname.touched && !oname.valid)">
+                        Owner Name is required
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label for="email" class="label">Email:</label><br>
+                    <input type="email" id="email" name="email" class="form-control" required ngModel #email="ngModel">
+                </div>
+                <div class="col-6">
+                    <label for="password" class="label">Password:</label><br>
+                    <input type="password" id="password" name="password" class="form-control" appPasswordPattern required ngModel #password="ngModel">
+                    <span class="text-danger" *ngIf="(password.touched && !password.valid)">
+                       Correct Password is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label for="contact" class="label">Contact Number:</label><br>
+                    <input type="number" id="contact" name="contact" class="form-control" required ngModel #contact="ngModel">
+                    <span class="text-danger" *ngIf="(contact.touched && !contact.valid)">
+                        Contact is required
+                    </span>
+                </div>
+                <div class="col-6">
+                    <label for="address" class="label">Address:</label><br>
+                    <textarea type="text" id="address" name="address" class="form-control" style="width:80%;" required ngModel #address="ngModel"></textarea>
+                    <span class="text-danger" *ngIf="(address.touched && !address.valid)">
+                        Address is required
+                        </span>
+                </div>  
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6"> <label for="file" class="label">File</label>
+                    <!-- <input name="file1" id="file" type="file" class="form-control" [disabled]="true"> -->
+                    <input #imageInput type="file" accept="image/*" name="file1" id="file"  class="form-control" (change)="processFile(imageInput)">
+                    <!-- <input name="file1" id="file" type="file" class="form-control" (change)="onFileChange($event)"> -->
+                  
+                   </div>
+                <div class="col-6">   <img [src]="imageSrc" *ngIf="imageSrc" style="height: 30px; width:50px"></div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-success" [disabled]="!regForm.form.valid">Submit</button>
+        </div>
+    </fieldset>
+</form>
+</div>
+

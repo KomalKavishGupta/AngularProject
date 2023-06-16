@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)" style="padding-left: 4px;">
+      <img class="imageSize" src="/assets/nvLogo.png">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 5px;">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: 400;">
+        <li class="nav-item" [ngClass]="{'disabled': isActive}">
+          <a class="nav-link text-light" href="#" [routerLink]="['/registration']">Registration</a>
+        </li>
+        <li class="nav-item" [ngClass]="{'disabled': isActive}">
+          <a class="nav-link text-light" aria-current="page" href="#" [routerLink]="['/login']">Login</a>
+          <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+        </li>
+      </ul>
+      <form class="d-flex">
+        <a class="text-light sign-out" aria-current="page" href="#" (click)="onLogout()" [ngStyle]="{display: isActive ? 'block' : 'none'}">Logout</a>
+        <h6 class="text-light" style="margin-left: 10px;">Execution Time: <span class="badge bg-success">{{executedTime | number : '1.2-2'}}ms</span></h6>
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button> -->
+      </form>
+    </div>
+  </div>
+</nav>
+
+

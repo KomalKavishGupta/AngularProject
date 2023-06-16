@@ -1,0 +1,46 @@
+<div class="customerContainer" style="padding-top: 18px;">
+    <div class="d-flex justify-content-center" [ngStyle]="{width: '100%'}"><h4 class="WelcomeMsg" style="padding-top: 25px">Welcome to {{storeName}}!!</h4></div>
+    <div class="d-flex justify-content-between spacing" style="height: 100%">
+        <div class="row" [ngStyle]="{width: '100%', height: '100%'}">
+            <div class="col-4" style="padding-top: 4.5rem;">
+                <div class="list-group" [ngStyle]="{width: '50%'}">
+                    <span class="list-group-item list-group-item-success" style="text-align: center; font-weight: bold;">
+                Actions
+                    </span>
+                    <a href="javascript:void(0)" (click)="selectList(1)" style="text-align: center;" class="list-group-item hoverEffect list-group-item-action">
+                    New Registration
+                        <span class="position-absolute translate-middle badge rounded-pill bg-primary person-badge-position">
+                            <i class="material-icons" style="padding-top: 3px; font-size: 17px;">person_add</i>
+                            <!-- <span class="visually-hidden">unread messages</span> -->
+                        </span>
+                        </a>
+                    <a href="javascript:void(0)" (click)="selectList(4)" style="text-align: center;" class="list-group-item hoverEffect list-group-item-action"><i class="fa fa-credit-card"></i> &nbsp;Due Payment</a>
+                    <a href="javascript:void(0)" (click)="selectList(5)" style="text-align: center;" class="list-group-item hoverEffect list-group-item-action"><i class="fa fa-credit-card"></i> &nbsp;Early Payment</a>
+                    <a href="javascript:void(0)" (click)="selectList(3)" style="text-align: center;" class="list-group-item hoverEffect list-group-item-action">Pending List
+                        <span class="position-absolute translate-middle badge rounded-pill bg-danger badge-position">
+                            {{customersCount[0]}}
+                            <!-- <span class="visually-hidden">unread messages</span> -->
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" (click)="selectList(2)" style="text-align: center;" class="list-group-item hoverEffect list-group-item-action">View All
+                        <span class="position-absolute translate-middle badge rounded-pill bg-success view-badge-position">
+                            {{customersCount[1]}}
+                            <!-- <span class="visually-hidden">unread messages</span> -->
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" style="text-align: center;" class="list-group-item hoverEffect list-group-item-action" (click)="selectList(6)">Profit</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <div>
+                    <app-new-registration *ngIf="itemNumber == 1" (pendingCount)="onPCount($event)"></app-new-registration>
+                    <app-view-edit-customer-payment *ngIf="itemNumber == 2"></app-view-edit-customer-payment>
+                    <app-pending-customers *ngIf="itemNumber == 3"></app-pending-customers>
+                    <app-update-payment *ngIf="itemNumber == 4"></app-update-payment>
+                    <app-deposit-amount *ngIf="itemNumber == 5" (advancePayCount)="onAdvancePay($event)"></app-deposit-amount>
+                    <app-view-chart-overview *ngIf="itemNumber == 6"></app-view-chart-overview>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>

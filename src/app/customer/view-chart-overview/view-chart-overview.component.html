@@ -1,0 +1,10 @@
+<div class="container centralized-form">
+    <div style="width: 70%; height: 70%; position: relative; left: 11%">
+        <div class="chart-container">
+            <canvas id="MyChart" #theDonutCanvas>{{ chart }}</canvas>
+            <span *ngIf="loading == false" class="lossPosition">loss:<br>{{lossPercentage | number:'1.1-1'}} %</span>
+            <span *ngIf="loading == false" class="profitPosition">profit:<br>{{overallProfit | number:'1.1-1'}} %</span>
+            <span *ngIf="loading == false" class="noOfCustomer">customers:<br>{{customersCount[1]}}</span>
+        </div>
+    </div>
+</div>

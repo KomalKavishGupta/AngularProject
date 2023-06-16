@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-end">
+  <!-- <h6>Total Count : {{totalCount}}</h6> -->
+</div>
+<div class="spin" *ngIf="loading"></div>
+
+<div class="title"><legend class="pb-2 text-primary">Pending Customers List:</legend></div>
+<div class="container centralized-form" *ngIf="!loading">
+  <div style="margin-top: 20px;">  <input type="text" placeholder="Search by name" [disabled]="loading" (input)="filterByName($event)" class="form-control" style="width: 50%"><br/></div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Address</th>
+            <th scope="col">Total Credit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cust of filteredCustomers | paginate : {itemsPerPage: pageSize,currentPage: page, totalItems: count}; let i = index">
+            <td>{{cust.customerName}}</td>
+            <td>{{cust.contact}}</td>
+            <td>{{cust.address}}</td>
+            <td>{{cust.totalCreditAmount}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+      (pageChange)="handlePageChange($event)" style="text-align: end;"></pagination-controls>
+</div>

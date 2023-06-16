@@ -1,0 +1,21 @@
+fieldset{
+    /* border: 1px solid #dbd0d0; */
+    padding: 20px;
+    /* border-radius: 5px; */
+}
+
+/* .label{
+    font-size: 14px;
+} */
+
+.centralized-form{
+    position: absolute;
+    top: 40%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    margin-top: 50px;
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 5%), 0 5px 5px 0 rgb(0 0 0 / 15%);
+    background: #ffffff;
+    border-radius: 0.375rem;
+}

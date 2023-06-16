@@ -1,0 +1,43 @@
+.customerContainer{
+    height: 100%; 
+    background-image: url('/assets/generalStoreBg.jpg');
+    background-repeat: no-repeat;
+    /* opacity: 0.9; */
+    background-size: cover;
+    overflow-y: hidden;
+}
+.spacing{
+    /* margin-top: 25px; */
+    align-items: center;
+}
+
+.hoverEffect:hover{
+    background-color: aliceblue;
+    color: blue;
+}
+
+.badge-position{
+    left: 75% !important;
+    top: 12px !important;
+}
+
+.view-badge-position{
+    left: 69% !important;
+    top: 12px !important;
+}
+
+.badge {
+    --bs-badge-padding-x: 0.55em !important;
+    --bs-badge-padding-y: 0.30em !important;
+}
+
+.person-badge-position{
+    left: 82% !important;
+    top: 14px !important;
+    --bs-badge-padding-x: 0.30em !important;
+    --bs-badge-padding-y: 0.01em !important;
+}
+
+.WelcomeMsg{
+    text-shadow: 2px 2px ivory;
+}

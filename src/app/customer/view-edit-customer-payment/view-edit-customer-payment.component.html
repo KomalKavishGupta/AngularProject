@@ -1,0 +1,120 @@
+<div class="d-flex justify-content-end">
+  <!-- <h6 style="color:white">Total Count : {{totalCount}}</h6> -->
+</div>
+<div class="spin" *ngIf="loading"></div>
+<div class="title"><legend class="pb-2 text-primary">All Customers List:</legend></div>
+<!-- <ngx-spinner type="ball-scale-multiple"></ngx-spinner> -->
+<div class="container centralized-form" *ngIf="!loading">
+  <div style="margin-top: 20px">  <input type="text" placeholder="Search by name" [disabled]="loading" (input)="filterByName($event)" class="form-control" style="width: 50%"><br/></div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Address</th>
+            <th scope="col">Total Credit</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cust of filteredCustomers | paginate : {itemsPerPage: pageSize,currentPage: page, totalItems: count}; let i = index" [style.background-color]="(cust.totalCreditAmount < 0) ? 'rgb(195 242 228)' : '#ffffff'">
+            <td>{{cust.customerName}}</td>
+            <td>{{cust.contact}}</td>
+            <td>{{cust.address}}</td>
+            <td>{{cust.totalCreditAmount}}</td>
+            <td class="d-flex justify-content-between">
+              <button type="button" class="btn btn-info btn-sm"(click)="open(creditmodal, cust.id, cust.customerName)"><i class="fas fa-bars"></i>Update</button>
+              <button type="button" class="btn btn-sm" (click)="deleteCustomer(cust.id)"><i class="material-icons" style="color: red;">delete</i></button>
+              <!-- <a href="javascript:void(0)" class="btn-outline-primary" (click)="open(creditmodal, cust.id)">Update Payment</a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+      (pageChange)="handlePageChange($event)" style="text-align: end;"></pagination-controls>
+</div>
+<!-- <div class="container centralized-form">
+    <form formGroupName="creditForm" (ngSubmit)="onSubmit()" [ngStyle]="{width: '95%'}">
+        <fieldset>
+            <legend>Credit Details:</legend>
+            <div class="row">
+                <div class="col"> <label for="name">Customer Name:</label><br>
+                    <input type="text" id="name" formControlName="name" [ngStyle]="{width:'80%'}">
+                </div>
+                <div class="col"> <label for="phone">Mobile No.:</label><br>
+                    <input type="number" id="phone" formControlName="phone" [ngStyle]="{width:'80%'}">
+                </div>
+          
+            </div><br>
+            <div class="row">
+                <div class="col"> <label for="address">Address:</label><br>
+                    <input type="text" id="address" formControlName="address" [ngStyle]="{width:'80%'}">
+                </div>
+                <div class="col">  <label for="credit">Credit Amount:</label><br>
+                    <input type="number" id="credit" formControlName="credit" [ngStyle]="{width:'80%'}">
+                </div>
+          
+            </div><br>
+            <div class="row">
+                <div class="col-12"> <label for="desc">Description</label><br>
+                    <textarea type="text" id="desc" formControlName="desc" [ngStyle]="{width: '78%', height: '60%'}"></textarea>
+                </div>
+            </div><br>
+            <button type="submit" class="btn btn-success" [disabled]="!creditForm.valid">Submit</button>
+        </fieldset>
+    </form>
+</div> -->
+   
+<ng-template #creditmodal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Update Contact Details</h5>
+    <button type="button" [ngStyle]="{background: 'none', border: '0px solid gray'}" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true" class="closeBtn">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-success" *ngIf="submitted">
+      <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+      <strong>Success!</strong> Your contact number has been updated successfully!
+    </div>
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" *ngIf="!submitted">
+        <div class="form-group pb-2">
+             <label for="cname">Customer Name:</label><br>
+             <input type="text" name="cname" id="cname" [disabled]="true" value="selectedCustomer" [(ngModel)]="selectedCustomer" #cname="ngModel" class="form-control" [ngStyle]="{width:'40%'}">
+        </div> 
+        <div class="form-group">
+            <label for="contact">contact:</label><br>
+            <input type="number" name="contact" class="form-control" id="contact" required ngModel #contact="ngModel"  [ngStyle]="{width: '90%'}">
+        </div><br>
+        <!-- <div class="form-group">
+          <div class="form-check">
+            <input
+              mdbCheckbox
+              class="form-check-input"
+              ngModel #paidStatus="ngModel"
+              [(ngModel)]="checkBoxValue"
+              (change)="onChangeValue($event)"
+              type="checkbox"
+              name="paidStatus"
+              id="paidStatus"
+            />
+            <label class="form-check-label" for="paidStatus">Paid</label><br>
+            <span class="paidHint">Click here if customer has paid this amount.</span>
+          </div>
+
+        </div> -->
+        <br>
+        <!-- <a href="javascript:void(0)" type="button" (click)="onSubmit(creditForm)">Submit</a> -->
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">Save</button>&nbsp;
+          <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Button click')">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div> -->
+</ng-template>
+
+    
+    

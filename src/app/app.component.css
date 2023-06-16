@@ -1,0 +1,9 @@
+.nav-sticky{
+    position: sticky;
+    top: 0;
+}
+
+.pagePosition{
+    height: 90%; 
+    position: relative;
+}

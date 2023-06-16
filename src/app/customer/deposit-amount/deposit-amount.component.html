@@ -1,0 +1,35 @@
+<div class="alert alert-success alert-dismissible" *ngIf="submitted" style="z-index: 1; width:640px; height: 48px">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong>Success!</strong> Your Payment has been updated successfully!
+</div>
+<div class="container centralized-form">
+    <form #creditForm="ngForm" (ngSubmit)="onSubmit(creditForm)">
+        <fieldset>
+            <legend class="pb-2 text-primary">Early Payment:</legend>
+        <div class="form-group pb-2">
+            <label for="customerName" class="label">Customer Name:</label>
+            <select class="form-control" id="customerName" name="customerName" [ngStyle]="{width:'40%'}" required ngModel #customerName="ngModel">
+              <option *ngFor="let cust of customerDetails" [value]="cust.id">{{cust.customerName}}</option>
+            </select>
+        </div>
+        <div class="form-group pb-2">
+            <label for="amount" class="label">Credit Amount:</label><br>
+            <input type="number" name="amount" id="amount" required ngModel #amount="ngModel" class="form-control" [ngStyle]="{width:'40%'}">
+            <span class="text-danger" *ngIf="(amount.touched && !amount.valid)">
+                amount is required
+                </span>
+        </div> 
+        <div class="form-group">
+            <label for="description" class="label">Description</label><br>
+            <textarea type="text" name="description" class="form-control" id="description" required ngModel #description="ngModel"  [ngStyle]="{width: '70%'}"></textarea>
+            <span class="text-danger" *ngIf="(description.touched && !description.valid)">
+                description is required
+                </span>
+        </div><br>
+        <div class="d-flex justify-content-end">
+        <!-- <a href="javascript:void(0)" type="button" (click)="onSubmit(creditForm)">Submit</a> -->
+        <button type="submit" class="btn btn-success" [disabled]="!creditForm.form.valid">Submit</button>
+        </div>
+        </fieldset>
+    </form>
+</div>
